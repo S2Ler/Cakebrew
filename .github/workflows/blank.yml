@@ -1,0 +1,19 @@
+name: Cakebrew
+
+on:
+  push:
+    branches: [ $default-branch ]
+  pull_request:
+    branches: [ $default-branch ]
+
+jobs:
+  build:
+
+    runs-on: macos-11.0
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      run: xcodebuild -workspace Cakebrew.xcworkspace/ -scheme Cakebrew
+    - name: Run tests
+      run: xcodebuild -workspace Cakebrew.xcworkspace/ -scheme Cakebrew test
